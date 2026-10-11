@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HABIDEM — Bâtir durable, vivre au frais | Architecture bioclimatique en Mauritanie</title>
+  <meta name="description" content="Habitat sahélien sans climatisation : terre crue (BTC) et Typha. Constructions bioclimatiques à Nouakchott, Rosso et Kaédi.">
+
+  <!-- Connexions anticipées vers les serveurs de polices -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
+
+  <!-- Polices : une seule requête chacune, display=swap pour éviter le texte invisible -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
+
+  <!-- Styles du projet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Tailwind (CDN) + config, chargés sans bloquer l'affichage (l'ordre est conservé avec defer) -->
+  <script defer src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script defer src="tailwind-config.js"></script>
+  <script defer src="main.js"></script>
+</head>
+
+<body class="bg-background font-body-md text-body-md text-on-surface antialiased">
+
+<!-- ================= EN-TÊTE ================= -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(45,55,72,0.04)]">
+  <div class="h-20 w-full px-gutter-mobile md:px-margin-tablet xl:px-margin max-w-[1440px] mx-auto flex items-center justify-between">
+    <a href="#" class="flex items-center">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHtskYdQY7T6BRoZzipaE2Gs5hS1sfYYq0EtOmTjAANYmWiIjCfblkCR_DUrZwtZOz4IWyrfbEuU9ZCtkWbOMzylOLIv7A0NgtXmKESquCemVtfPzkdYKD8KuElCzc1qvZAhotZjg28g6eMdNMH2zfTeriReKDPQPA7W6DZMiobLYt92lXzwVuEHjBdUqjFVVzNF6bf6o2X-6Z8TYXRMExbBSwZEXqai5RpjgUhxGSSH8hiQesNNC0lJNur9ZsAwWxuPk"
+           alt="HABIDEM - Habitat Développement en Mauritanie" class="h-12 md:h-14 w-auto object-contain mix-blend-multiply">
+    </a>
+
+    <nav class="hidden md:flex items-center gap-space-md lg:gap-space-lg" aria-label="Navigation principale">
+      <a href="#technologie" class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">Technologie</a>
+      <a href="#realisations" class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">Réalisations</a>
+      <a href="#histoire" class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">Histoire</a>
+      <a href="#materiaux" class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">Matériaux</a>
+      <a href="#galerie" class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">Galerie Chantiers</a>
+      <a href="#faq" class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors">FAQ</a>
+    </nav>
+
+    <a href="#contact" class="hidden lg:inline-flex items-center justify-center bg-primary-container text-on-primary hover:bg-typha-green-deep px-space-md py-space-sm rounded-full font-label-md text-label-md transition-all card-shadow">
+      Demander un devis
+    </a>
+
+    <!-- Bouton menu (visible uniquement sous 1024 px) -->
+    <button id="menu-toggle" type="button" class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-full text-primary-container hover:bg-typha-green-light transition-colors"
+            aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="material-symbols-outlined text-[28px]">menu</span>
+    </button>
+  </div>
+
+  <!-- Panneau de navigation mobile -->
+  <nav id="mobile-menu" class="hidden md:hidden border-t border-border-subtle bg-surface-container-lowest px-gutter-mobile md:px-margin-tablet py-space-md" aria-label="Navigation mobile">
+    <ul class="flex flex-col font-label-md text-label-md text-on-surface">
+      <li><a href="#technologie" class="block py-3 border-b border-border-subtle">Technologie</a></li>
+      <li><a href="#realisations" class="block py-3 border-b border-border-subtle">Réalisations</a></li>
+      <li><a href="#histoire" class="block py-3 border-b border-border-subtle">Histoire</a></li>
+      <li><a href="#materiaux" class="block py-3 border-b border-border-subtle">Matériaux</a></li>
+      <li><a href="#galerie" class="block py-3 border-b border-border-subtle">Galerie Chantiers</a></li>
+      <li><a href="#faq" class="block py-3">FAQ</a></li>
+    </ul>
+    <a href="#contact" class="mt-space-md flex items-center justify-center bg-primary-container text-on-primary px-space-md py-3 rounded-full font-label-md text-label-md">Demander un devis</a>
+  </nav>
+</header>
+
+<main class="w-full pt-20 bg-background">
+
+  <!-- ================= 1. ACCUEIL (HERO) ================= -->
+  <section class="relative w-full min-h-[92vh] -mt-20 flex items-center justify-center overflow-hidden bg-surface-container-high">
+    <!-- <img> au lieu d'un background-image : chargement prioritaire (meilleur temps d'affichage) -->
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtOyrQmBzEUCTJMIaQZKX26zbftdVz04M3uoUjsIoUnrx0_-1JBbB9xh94e6ZtHmehuhJuvGaWiMKvcHEpKtI4VP6Mrb_zKfcJw8iYSaemh0lb_bJ7e5JB7rM5qx9QGni1BKyqJD7ZWB31EaSU2UAPpRfy2FAbnFBkKUuQ8qyLj-M3cggb4xCcQfvC76uJSX8uXZLZhnckaRz1mbxMfWAWqEeYJeCOHbHFubZWLJ31tb_od58ROmHrX_XTZfCv7vSaHuwTaYZ5PrDp6M4"
+         alt="" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/30"></div>
+
+    <div class="relative z-10 w-full max-w-[1440px] mx-auto px-gutter-mobile md:px-margin-tablet xl:px-margin pt-28 pb-16 flex flex-col justify-end min-h-[92vh]">
+      <div class="max-w-3xl backdrop-blur-xl border p-6 sm:p-10 shadow-xl flex flex-col gap-space-md bg-sand-canvas border-border-subtle rounded-3xl">
+        <div class="inline-flex items-center gap-space-xs px-3 py-1 rounded-full bg-typha-green-light w-fit">
+          <span class="w-2 h-2 rounded-full bg-primary-container"></span>
+          <span class="font-label-sm text-label-sm text-primary-container tracking-wider uppercase">Pionnier de l'architecture bioclimatique au Sahel</span>
+        </div>
+
+        <h1 class="font-headline-xl md:font-display-lg text-headline-xl md:text-display-lg text-primary tracking-tight leading-none font-bold">
+          Bâtir durable. Vivre au frais.
+        </h1>
+        <p class="font-body-lg text-body-lg text-slate-text leading-relaxed">
+          L'habitat sahélien réinventé sans climatisation. Grâce à l'alliance unique de la terre crue et du Typha, nous édifions des espaces qui neutralisent les canicules à 46°C tout en réduisant drastiquement votre facture d'énergie.
+        </p>
+
+        <!-- Chiffres clés -->
+        <div class="grid grid-cols-3 gap-2 sm:gap-4 py-3 bg-surface-container-low rounded-xl px-4">
+          <div class="flex flex-col">
+            <span class="font-headline-md text-headline-md font-bold text-secondary">&gt; 9h</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Déphasage thermique</span>
+          </div>
+          <div class="flex flex-col border-l border-border-subtle pl-3 sm:pl-4">
+            <span class="font-headline-md text-headline-md font-bold text-primary-container">23°C – 26°C</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Température constante</span>
+          </div>
+          <div class="flex flex-col border-l border-border-subtle pl-3 sm:pl-4">
+            <span class="font-headline-md text-headline-md font-bold text-secondary">COP 30</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">Prix Climat Chaud</span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-space-md pt-2">
+          <a href="#contact" class="inline-flex items-center justify-center bg-secondary text-on-secondary hover:bg-on-secondary-container px-6 py-3.5 rounded-full font-label-md text-label-md transition-all shadow-md">
+            Démarrer mon projet
+            <span class="material-symbols-outlined ml-2 text-[18px]">arrow_forward</span>
+          </a>
+          <a href="#defi-thermique" class="inline-flex items-center gap-1 font-label-md text-label-md text-slate-text hover:text-primary-container transition-colors underline underline-offset-4 decoration-border-subtle hover:decoration-primary-container">
+            Voir les preuves thermiques
+            <span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 2. RECONNAISSANCES OFFICIELLES ================= -->
+  <section class="w-full bg-surface-container-lowest py-6 border-b border-border-subtle">
+    <div class="w-full max-w-[1440px] mx-auto px-gutter-mobile md:px-margin-tablet xl:px-margin">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 items-center">
+        <div class="flex items-center gap-3 p-2 rounded-lg bg-surface-container-low/60">
+          <span class="material-symbols-outlined text-primary-container text-[24px]">workspace_premium</span>
+          <div class="flex flex-col">
+            <span class="font-label-sm text-label-sm font-bold">Prix COP 30</span>
+            <span class="text-[11px] text-on-surface-variant">Climat Chaud / GSA</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 p-2 rounded-lg bg-surface-container-low/60">
+          <span class="material-symbols-outlined text-primary-container text-[24px]">energy_savings_leaf</span>
+          <div class="flex flex-col">
+            <span class="font-label-sm text-label-sm font-bold">OMVS 2024</span>
+            <span class="text-[11px] text-on-surface-variant">Résilience Climatique</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 p-2 rounded-lg bg-surface-container-low/60">
+          <span class="material-symbols-outlined text-primary-container text-[24px]">military_tech</span>
+          <div class="flex flex-col">
+            <span class="font-label-sm text-label-sm font-bold">Med'Innovant 2023</span>
+            <span class="text-[11px] text-on-surface-variant">1er Prix Innovation Urbaine</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 p-2 rounded-lg bg-surface-container-low/60">
+          <span class="material-symbols-outlined text-primary-container text-[24px]">verified_user</span>
+          <div class="flex flex-col">
+            <span class="font-label-sm text-label-sm font-bold">Partenaire PNU</span>
+            <span class="text-[11px] text-on-surface-variant">Ministère &amp; MHUAT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3. LE DÉFI THERMIQUE ================= -->
+  <section id="defi-thermique" class="w-full py-space-xl md:py-24 bg-background">
+    <div class="w-full max-w-[1440px] mx-auto px-gutter-mobile md:px-margin-tablet xl:px-margin">
+
+      <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-space-sm mb-12">
+        <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Physique du bâtiment appliquée au Sahel</span>
+        <h2 class="font-headline-xl text-headline-xl md:text-[2.75rem] tracking-tight font-bold">Pourquoi continuer à construire des fours thermiques ?</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">
+          À Nouakchott, les canicules dépassent régulièrement les 40°C. Le parpaing en ciment standard absorbe cette chaleur diurne et la réinjecte directement dans vos pièces, forçant l'usage permanent de la climatisation mécanique. Résultat : des factures d'électricité intenables et un inconfort permanent. HABIDEM y répond par la physique du bâtiment.
+        </p>
+      </div>
+
+      <div class="w-full bg-surface-container-lowest rounded-2xl p-6 md:p-10 card-shadow border border-border-subtle">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+          <!-- Schéma du bouclier thermique -->
+          <div class="lg:col-span-7 flex flex-col items-center">
+            <svg class="w-full h-auto max-h-[380px]" fill="none" viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schéma : 46°C à l'extérieur, 24,2°C à l'intérieur grâce au bouclier HABIDEM de 30 cm">
+              <rect fill="#FBF9F5" height="300" rx="16" stroke="#E5E1D8" width="640" x="20" y="20"/>
+
+              <!-- Extérieur -->
+              <rect fill="#F6EDE8" height="260" rx="8" width="160" x="40" y="40"/>
+              <text fill="#8E4D2D" font-family="Plus Jakarta Sans" font-size="14" font-weight="700" text-anchor="middle" x="120" y="70">EXTÉRIEUR CANICULAIRE</text>
+              <text fill="#8E4D2D" font-family="Plus Jakarta Sans" font-size="28" font-weight="800" text-anchor="middle" x="120" y="105">+46°C</text>
+              <g stroke="#8E4D2D" stroke-dasharray="6 4" stroke-linecap="round" stroke-width="3">
+                <path d="M70 140 H160"/><path d="M70 180 H160"/><path d="M70 220 H160"/>
+              </g>
+              <g fill="#8E4D2D">
+                <polygon points="165,140 155,135 155,145"/><polygon points="165,180 155,175 155,185"/><polygon points="165,220 155,215 155,225"/>
+              </g>
+              <text fill="#718096" font-family="Plus Jakarta Sans" font-size="11" text-anchor="middle" x="120" y="260">Onde thermique brute</text>
+
+              <!-- Bouclier HABIDEM -->
+              <rect fill="#E9F2EC" height="270" rx="10" stroke="#1A5632" stroke-width="2" width="220" x="230" y="35"/>
+              <text fill="#1A5632" font-family="Plus Jakarta Sans" font-size="13" font-weight="700" text-anchor="middle" x="340" y="65">BOUCLIER HABIDEM (30 cm)</text>
+              <rect fill="#C17753" fill-opacity="0.25" height="180" rx="4" width="55" x="245" y="80"/>
+              <text fill="#783C1D" font-family="Plus Jakarta Sans" font-size="10" font-weight="600" text-anchor="middle" transform="rotate(-90 272 175)" x="272" y="175">BTC (15 cm)</text>
+              <rect fill="#1A5632" fill-opacity="0.3" height="180" rx="4" width="60" x="310" y="80"/>
+              <text fill="#1A5632" font-family="Plus Jakarta Sans" font-size="10" font-weight="600" text-anchor="middle" transform="rotate(-90 340 175)" x="340" y="175">TYPHA (10 cm)</text>
+              <rect fill="#E5E1D8" height="180" rx="4" width="50" x="380" y="80"/>
+              <text fill="#2D3748" font-family="Plus Jakarta Sans" font-size="10" font-weight="600" text-anchor="middle" transform="rotate(-90 405 175)" x="405" y="175">ENDUIT (5 cm)</text>
+              <text fill="#1A5632" font-family="Plus Jakarta Sans" font-size="11" font-weight="700" text-anchor="middle" x="340" y="285">Rupture du pont thermique</text>
+
+              <!-- Intérieur -->
+              <rect fill="#F0F7F4" height="260" rx="8" width="160" x="480" y="40"/>
+              <text fill="#1A5632" font-family="Plus Jakarta Sans" font-size="14" font-weight="700" text-anchor="middle" x="560" y="70">INTÉRIEUR BIOCLIMATIQUE</text>
+              <text fill="#1A5632" font-family="Plus Jakarta Sans" font-size="28" font-weight="800" text-anchor="middle" x="560" y="105">24.2°C</text>
+              <text fill="#2D3748" font-family="Plus Jakarta Sans" font-size="12" text-anchor="middle" x="560" y="145">Sans climatisation</text>
+              <circle cx="560" cy="190" fill="#1A5632" fill-opacity="0.1" r="24"/>
+              <path d="M552 190 L558 196 L569 184" stroke="#1A5632" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+              <text fill="#1A5632" font-family="Plus Jakarta Sans" font-size="11" font-weight="600" text-anchor="middle" x="560" y="235">Hygrométrie régulée 62%</text>
+              <text fill="#718096" font-family="Plus Jakarta Sans" font-size="11" text-anchor="middle" x="560" y="255">Déphasage thermique &gt; 9h</text>
+            </svg>
+          </div>
+
+          <!-- Avantages -->
+          <div class="lg:col-span-5 flex flex-col gap-space-md">
+            <div class="flex items-start gap-space-sm p-4 rounded-xl bg-background border border-border-subtle">
+              <span class="material-symbols-outlined text-secondary text-[24px]">thermostat</span>
+              <div>
+                <h3 class="font-headline-sm text-headline-sm font-semibold">Atténuation du pic journalier</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">L'énergie solaire accumulée durant la journée est différée pendant 9 heures pour être restituée la nuit lors du rafraîchissement naturel.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-space-sm p-4 rounded-xl bg-background border border-border-subtle">
+              <span class="material-symbols-outlined text-primary-container text-[24px]">nest_eco_leaf</span>
+              <div>
+                <h3 class="font-headline-sm text-headline-sm font-semibold">Élimination de la clim diurne</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Économies directes de 50% à 80% sur la facture électrique mensuelle en éliminant les groupes de condensation énergivores.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-space-sm p-4 rounded-xl bg-background border border-border-subtle">
+              <span class="material-symbols-outlined text-slate-text text-[24px]">air</span>
+              <div>
+                <h3 class="font-headline-sm text-headline-sm font-semibold">Régulation hygrométrique passive</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Les fibres naturelles de Typha absorbent l'excès d'humidité ambiante et la restituent à sec, assurant un confort respiratoire inégalé.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4. RÉALISATIONS ================= -->
+  <section id="realisations" class="w-full py-space-xl md:py-24 bg-surface-container-low">
+    <div class="w-full max-w-[1440px] mx-auto px-gutter-mobile md:px-margin-tablet xl:px-margin">
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="font-label-sm text-label-sm uppercase tracking-wider text-primary-container font-bold">Chantiers &amp; Données in situ</span>
+          <h2 class="font-headline-xl text-headline-xl md:text-[2.75rem] tracking-tight font-bold">Des résultats concrets, mesurables et esthétiques.</h2>
+        </div>
+        <div class="inline-flex items-center gap-2 bg-typha-green-light px-4 py-2 rounded-full text-primary-container font-label-md text-label-md">
+          <span class="material-symbols-outlined text-[18px]">verified</span>
+          Données thermographiques homologuées
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+
+        <!-- Villa Soukouk -->
+        <article class="md:col-span-7 flex flex-col bg-surface-container-lowest rounded-2xl overflow-hidden card-shadow border border-border-subtle group">
+          <div class="relative h-80 sm:h-96 w-full overflow-hidden">
+            <img loading="lazy" decoding="async" alt="Villa Bioclimatique de Soukouk" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuD70ElZJ87hw3ZrtGljVhlfwx54-1XefTHk7apwCxDGKyNaIm1StnZhKeUmFU2Qep5OARS37HEOt-xp6X450fgitaXsDCskt3sNV1EiL1aERhv9-rs2zVMvYLHcTKJigBLSGzrWjLiqpRUE7bOKyEfO5NgK_TnFViEcIw4hMslBXmS4VkoS0PG8u2TRpmsB9Isc-0g6mBALednww50RJI3Eyq11wpDxkLoXn2eP09LaZwIEWxhiQtNQgwGqy37TqrP9T3M">
+            <span class="absolute top-4 left-4 bg-primary-container text-on-primary font-label-sm text-label-sm px-3 py-1 rounded-full shadow">Résidentiel Haut Standing</span>
+          </div>
+          <div class="p-6 md:p-8 flex flex-col justify-between flex-1">
+            <div>
+              <h3 class="font-headline-md text-headline-md font-bold">Villa Bioclimatique de Soukouk (Tévragh-Zeina)</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant mt-2">Architecture contemporaine et toiture en chaume de Typha de 40 cm. Intégration paysagère sahélienne, terrasses ventilées et zéro climatisation dans le salon d'honneur.</p>
+            </div>
+            <div class="flex items-center justify-between pt-6 mt-6 border-t border-border-subtle text-slate-text">
+              <span class="font-label-sm text-label-sm flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary-container">location_on</span> Tevragh-Zeina, Nouakchott</span>
+              <span class="font-label-sm text-label-sm font-semibold text-secondary">Inertie 100% BTC</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Mesure thermique in situ -->
+        <article class="md:col-span-5 flex flex-col bg-surface-container-lowest rounded-2xl overflow-hidden card-shadow border border-border-subtle">
+          <div class="relative h-56 sm:h-64 w-full overflow-hidden">
+            <img loading="lazy" decoding="async" alt="Mesure in situ certifiée" class="w-full h-full object-cover"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6puoFsp_bIoIXjlRDdnFL6b001XRb2oYA558liqE8d-FpO-7DDsZtasXak6X_GkcNhyzmK9jCk1IWi50kAvkjUbXBXSqIWWBl6DFlxgCCfe_8jBk4muwpPiCSd2UVFEPdssZFutZIApxlhu-cA0QO8484y_ZIEFXZ1iLYZr5KP67EHgWXgJIfU2RA1fxzz_GMnwzkMZBs98hOaiQNlinEY_e3f9P5DQXiPfXKyXkNgN75UX4yNTbx2b9Mdqbd5xQC3Tk">
+            <div class="absolute inset-0 bg-primary/20"></div>
+            <div class="absolute inset-0 p-4 flex flex-col justify-between">
+              <div class="flex justify-between items-center">
+                <span class="bg-secondary text-white font-label-sm text-label-sm px-3 py-1 rounded-full">Capteurs In Situ</span>
+                <span class="bg-black/60 text-white font-label-sm text-label-sm px-2.5 py-1 rounded-full">Campagne de mesure 2026</span>
+              </div>
+              <div class="bg-surface-container-lowest/95 p-3 rounded-xl shadow-lg border border-border-subtle flex items-center justify-around">
+                <div class="text-center">
+                  <span class="font-label-sm text-label-sm text-error font-bold">Extérieur</span>
+                  <div class="font-headline-md text-headline-md font-bold text-error">46.4°C</div>
+                </div>
+                <div class="h-8 w-px bg-border-subtle"></div>
+                <div class="text-center">
+                  <span class="font-label-sm text-label-sm text-primary-container font-bold">Paroi HABIDEM</span>
+                  <div class="font-headline-md text-headline-md font-bold text-primary-container">26.3°C</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 md:p-8 flex flex-col flex-1 justify-between">
+            <div>
+              <h3 class="font-headline-sm text-headline-sm font-bold">Test d'efficacité thermique sur site</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Relevé certifié par caméra thermique : alors que la façade extérieure atteint plus de 46°C sous le soleil sahélien, l'intérieur reste naturellement frais à 26,3°C sans aucune climatisation.</p>
+            </div>
+            <div class="p-3 bg-typha-green-light rounded-xl mt-4 flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary-container text-[20px]">verified</span>
+              <span class="font-label-sm text-label-sm text-primary-container">Audit énergétique indépendant conforme normes UEMOA</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Poste de santé de Kaédi -->
+        <article class="md:col-span-12 flex flex-col lg:flex-row bg-surface-container-lowest rounded-2xl overflow-hidden card-shadow border border-border-subtle">
+          <div class="lg:w-1/2 h-64 lg:h-auto overflow-hidden">
+            <img loading="lazy" decoding="async" alt="Poste de Santé Rural Kaédi" class="w-full h-full object-cover"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE5co8su6vGTC5kdzi7OX2qRQS5V2bGDHbdn7QpZ9-F_DlEGIYW4b8GXHklH-BlOtLZbWWbzOELKDsNpJ6W5jESLXD50hcuHCC4OH8VoNgWk_MWchVy8pqHrtAnGqibX3jTthJ5HdyHX8RjRS0x2gxYeSM-ojpwxqDyh6uapxGJH3oydi0hMX9en8XIPIsYbAlTxnjuhgkmhQYQh_wopRNwt2u0fMrPk1jOfa5SAGeKZMFTL0B4G5ObtKYEVuXSLtRJbg">
+          </div>
+          <div class="lg:w-1/2 p-6 md:p-10 flex flex-col justify-between">
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center gap-2">
+                <span class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-3 py-1 rounded-full">Infrastructures Publiques</span>
+                <span class="text-slate-muted font-label-sm text-label-sm">Kaédi, Vallée du Fleuve</span>
+              </div>
+              <h3 class="font-headline-md text-headline-md font-bold">Poste de Santé Rural (Kaédi)</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant">Preuve d'une construction publique ultra-compétitive et bas-carbone. Les salles de soins restent stables toute l'année, protégeant médicaments et patients des pics thermiques extrêmes de la zone fluviale.</p>
+              <div class="grid grid-cols-2 gap-4 mt-2">
+                <div class="p-3 bg-surface-container rounded-xl">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant">Économie carbone</span>
+                  <div class="font-headline-sm text-headline-sm font-bold text-primary-container">-72% CO₂</div>
+                </div>
+                <div class="p-3 bg-surface-container rounded-xl">
+                  <span class="font-label-sm text-label-sm text-on-surface-variant">Main-d'œuvre locale</span>
+                  <div class="font-headline-sm text-headline-sm font-bold text-secondary">85% artisans</div>
+                </div>
+              </div>
+            </div>
+            <div class="pt-6 mt-6 border-t border-border-subtle flex justify-between items-center">
+              <span class="font-label-sm text-label-sm text-slate-text">Superficie : 340 m² • Livré en 2024</span>
+              <a href="#contact" class="font-label-md text-label-md text-primary-container hover:underline font-semibold flex items-center gap-1">Dossier technique <span class="material-symbols-outlined text-[18px]">chevron_right</span></a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5. GALERIE CHANTIERS ================= -->
+  <section id="galerie" class="w-full py-space-xl md:py-24 bg-background overflow-hidden border-b border-border-subtle">
+    <div class="w-full max-w-[1440px] mx-auto px-gutter-mobile md:px-margin-tablet xl:px-margin mb-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Immersion Terrain</span>
+          <h2 class="font-headline-xl text-headline-xl md:text-[2.75rem] tracking-tight font-bold mt-1">Galerie Chantiers &amp; Éco-Matériaux</h2>
+        </div>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-md">Un aperçu vivant de la fabrication des briques BTC, du façonnage des toitures en Typha et de la vie sur nos chantiers en Mauritanie.</p>
+      </div>
+    </div>
+
+    <!-- Les 5 cartes ci-dessous sont dupliquées automatiquement par js/main.js pour la boucle infinie -->
+    <div class="relative w-full overflow-hidden">
+      <div class="marquee-track">
+
+        <article class="w-80 h-96 rounded-2xl overflow-hidden bg-surface-container-lowest border border-border-subtle shadow-md shrink-0 flex flex-col group">
+          <div class="h-64 overflow-hidden">
+            <img loading="lazy" decoding="async" alt="Compression briques BTC" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQSLUOmRJn9EcOXS1filvXCPv0DhQ4MZdD7_nH8fBhs26xgu3ut3Xn1ADFc9-dCN0IKhncxBKZgzNh2MBvaDgXk0dpEHuf0uQhd2UVLdUQ1KIsB07w6a_dNLMg_iZ5wUUJCOegblpT42GRVlVDGuO_wSUctjGyBuA0pEipPqRGq4eo5NTEyVfjOWaCij5l4Lwg-Pb2lwlYJPrCLsfUAL7j9OX1gZZrpISA2bbrM5MrdbN6zb-b9JGzzA1-1l9NNsguwlw">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <span class="font-label-sm text-label-sm font-bold text-secondary uppercase">Atelier Terre</span>
+            <h3 class="font-headline-sm text-headline-sm font-semibold mt-1">Pressage BTC Haute Densité</h3>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Séchage solaire passif à Nouakchott</span>
+          </div>
+        </article>
+
+        <article class="w-80 h-96 rounded-2xl overflow-hidden bg-surface-container-lowest border border-border-subtle shadow-md shrink-0 flex flex-col group">
+          <div class="h-64 overflow-hidden">
+            <img loading="lazy" decoding="async" alt="Mise en œuvre toiture Typha" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdL1LwkHfoWh2JfynKUl2rGAoRFkg7Rzsux0ce32fJcr4SayiaYrvaT2IFiDIDUsSVJk1Z1UqOUu60ciz7UAUGX6OZEA7RZ_-9wSyn3hJU3bK8QzYbJzOh43PPtRiMQ8rXZRD6SI3hcaaU1sgnIapeN7NREu1pZPg8rTYjrIQa_pBuTNMzCt412bQVZ5WrzNNEERQxnM3M-Yik4D2bBfZF0QIq3TPOkrIiaHQIJ1JKzHttF0qQvX6Ledm8p4CZRzvQI0c">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <span class="font-label-sm text-label-sm font-bold text-primary-container uppercase">Isolation Naturelle</span>
+            <h3 class="font-headline-sm text-headline-sm font-semibold mt-1">Bottes de Typha en Toiture</h3>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Découpe et tressage artisanal</span>
+          </div>
+        </article>
+
+        <article class="w-80 h-96 rounded-2xl overflow-hidden bg-surface-container-lowest border border-border-subtle shadow-md shrink-0 flex flex-col group">
+          <div class="h-64 overflow-hidden">
+            <img loading="lazy" decoding="async" alt="Application enduit terre chaux" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCITw87qMhH6gqwfPCCHD1rF-nIqlDO0nJ_SEPtCQLGsDgJ3rY9nbzxN5Cs1vsDIGte-3GdnTlyjfVk7pgSBFbaKJZ527Pj0GNT1PJTGqQpfCYE5N_Q1VU0mx_WTLaVFL74YjcjNSMjtUw_0Y20H-PItrsnEiWDfLwGlTVdEwltw5nR92UkbP-BOGOtaitlouVACtYUz8X3GD_y8L30J4CRmb6DQvew52hFRc8MCmbbCVuBWqgOJ7WuYOZG6RAj8Hi3VIE">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <span class="font-label-sm text-label-sm font-bold text-slate-text uppercase">Finitions</span>
+            <h3 class="font-headline-sm text-headline-sm font-semibold mt-1">Enduits Protecteurs Ocre</h3>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Application manuelle respirante</span>
+          </div>
+        </article>
+
+        <article class="w-80 h-96 rounded-2xl overflow-hidden bg-surface-container-lowest border border-border-subtle shadow-md shrink-0 flex flex-col group">
+          <div class="h-64 overflow-hidden">
+            <img loading="lazy" decoding="async" alt="Artisans et transmission" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_D4eNWxtNJQem_ccueIZJt35hBH4uSVw6iHDvEOcqWpkrmk4SYiYky-bO2heGKuuzJx08GT1YsINTX66Qk0ZgQCaieCAxQzWwtxdkMgfO7sNxs2gDsXO9b3olwXqsyGtGUPasj28vhivfxaRgRf1e5WP0odefyDboOBB9fAK2JS5mqAExQI2PR1LJIrohG7CgV09P2JENP2OM65m1Q86t2p9A9ep0ve-ZAoc5BkUJzBZfDgVatmMqwVlsu8QrfYG4RVQ">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <span class="font-label-sm text-label-sm font-bold text-secondary uppercase">Formation Locale</span>
+            <h3 class="font-headline-sm text-headline-sm font-semibold mt-1">Chantier École Kaédi</h3>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Transmission des savoirs éco-constructifs</span>
+          </div>
+        </article>
+
+        <article class="w-80 h-96 rounded-2xl overflow-hidden bg-surface-container-lowest border border-border-subtle shadow-md shrink-0 flex flex-col group">
+          <div class="h-64 overflow-hidden">
+            <img loading="lazy" decoding="async" alt="Essais thermodynamiques" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvN2DvpIkJghi9mldX8zwLRzYYwXkg7S5vsKCPSQ_eGpCRUuDBXzu-Azxs8tb_CBND7EBl0BPLTmSz5yF69GeUlv8FI9dkphvNCxAoYC0zgTmkzvPLH7YuD2tTYPOSjKdRb70AbTXD3dm6xo0msRnL_vX1OpKK2KPjPtzRZEqG9x9nNViLnxEvMoyiRjGMAzO9yK9gg-qUGAR0JW-QePevmPuPDSC0p-M1b8iObnYz45GSXr7MFuLhPHP3_S233mYr2ok">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <span class="font-label-sm text-label-sm font-bold text-primary-container uppercase">R&amp;D</span>
+            <h3 class="font-headline-sm text-headline-sm font-semibold mt-1">Banc de Mesure Thermique</h3>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Validation scientifique en temps réel</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6. TECHNOLOGIE ================= -->
+  <section id="technologie" class="w-full py-space-xl md:py-24 bg-background">
+    <div class="w-full max-w-[1440px] mx-auto px-gutter-mobile md:px-margin-tablet xl:px-margin">
+
+      <div class="max-w-3xl mb-12">
+        <span class="font-label-sm text-label-sm uppercase tracking-wider text-primary-container font-bold">Ingénierie des Matériaux Biosourcés</span>
+        <h2 class="font-headline-xl text-headline-xl md:text-[2.75rem] tracking-tight font-bold mt-1">30 centimètres d'ingénierie pour stopper l'onde de chaleur.</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mt-2">La technologie brevetée HABIDEM remplace le pont thermique par un composite tripartite où chaque couche remplit un rôle thermodynamique ciblé.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- Les 3 couches -->
+        <div class="lg:col-span-7 flex flex-col gap-4">
+
+          <article class="relative overflow-hidden bg-surface-container-lowest p-6 rounded-2xl border border-border-subtle card-shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/40 group flex flex-col sm:flex-row gap-5 items-start">
+            <div class="w-14 h-14 rounded-xl bg-terracotta-soft text-secondary flex items-center justify-center font-headline-md font-bold shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white">1</div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between gap-2">
+                <h3 class="font-headline-sm text-headline-sm font-bold group-hover:text-primary transition-colors">L'Inertie Minérale (15 cm)</h3>
+                <span class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-2.5 py-0.5 rounded-full whitespace-nowrap">Masse Lente</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Brique d'argile crue locale (BTC) haute densité pressée mécaniquement. Sa capacité thermique massive capte le flux solaire extérieur et l'empêche de pénétrer en temps réel.</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3 font-label-sm text-label-sm text-slate-text">
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-low"><span class="material-symbols-outlined text-[16px] text-secondary">layers</span> 1800 kg/m³</span>
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-low"><span class="material-symbols-outlined text-[16px] text-secondary">schedule</span> Déphasage +5.5h</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="relative overflow-hidden bg-surface-container-lowest p-6 rounded-2xl border border-border-subtle card-shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/40 group flex flex-col sm:flex-row gap-5 items-start">
+            <div class="w-14 h-14 rounded-xl bg-typha-green-light text-primary-container flex items-center justify-center font-headline-md font-bold shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white">2</div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between gap-2">
+                <h3 class="font-headline-sm text-headline-sm font-bold group-hover:text-primary transition-colors">La Rupture Thermique (10 cm)</h3>
+                <span class="bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm px-2.5 py-0.5 rounded-full whitespace-nowrap">Cœur Isolant</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Âme isolante en panneaux de paille de Typha australis compressée. Sa structure cellulaire alvéolaire emprisonne l'air statique et bloque net la conduction calorifique.</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3 font-label-sm text-label-sm text-slate-text">
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-low"><span class="material-symbols-outlined text-[16px] text-primary-container">thermostat</span> λ = 0,054 W/m.K</span>
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-low"><span class="material-symbols-outlined text-[16px] text-primary-container">block</span> Zéro pont thermique</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="relative overflow-hidden bg-surface-container-lowest p-6 rounded-2xl border border-border-subtle card-shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/40 group flex flex-col sm:flex-row gap-5 items-start">
+            <div class="w-14 h-14 rounded-xl bg-surface-container text-slate-text flex items-center justify-center font-headline-md font-bold shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white">3</div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between gap-2">
+                <h3 class="font-headline-sm text-headline-sm font-bold group-hover:text-primary transition-colors">La Respirabilité (5 cm)</h3>
+                <span class="bg-surface-container-high font-label-sm text-label-sm px-2.5 py-0.5 rounded-full whitespace-nowrap">Perspirance</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Enduits protecteurs terre-chaux hydraulique garantissant une hygrométrie naturellement équilibrée à ~62% sans créer d'effet thermos toxique ou suffocant.</p>
+              <div class="flex flex-wrap items-center gap-2 mt-3 font-label-sm text-label-sm text-slate-text">
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-low"><span class="material-symbols-outlined text-[16px]">humidity_percentage</span> 60-65% HR stable</span>
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-surface-container-low"><span class="material-symbols-outlined text-[16px]">shield</span> Résistant intempéries</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Prototypes et tests -->
+        <div class="lg:col-span-5 flex flex-col gap-4">
+
+          <article class="bg-surface-container-lowest rounded-2xl overflow-hidden card-shadow border border-border-subtle group">
+            <div class="overflow-hidden relative">
+              <img loading="lazy" decoding="async" alt="Briques de terre compressée prototype" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700"
+                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1F57RscUcxHgMtaMB_W676AFEvGPND0GBzpltiRBJW6KVvszlDZu7Zi4iTFmn6g46olgI7l2hlt2FN7n-8EfPk78icXazydojoh4mfX0DeCLHJHqkVSt_ydfr4MusB6ecYNYUn6ZSnK9qJ1TXMTFwi3E68ga9cOcHzACSOskW1PAP-uULqZMJ6x3s-b-IAyRQf_HX2RsaabJSgnvlj9ywf1aZVMjrvRQnyBvs9HIVIy98rzbCQPssaLqZ6ilNy40iuhQ">
+              <span class="absolute top-3 right-3 bg-black/60 px-2.5 py-1 rounded-full text-[11px] text-white font-medium">Contrôle qualité</span>
+            </div>
+            <div class="p-5">
+              <div class="flex items-center justify-between">
+                <span class="font-label-sm text-label-sm text-secondary font-bold">Laboratoire de Recherche Matériaux</span>
+                <span class="text-[11px] text-on-surface-variant font-label-sm">Norme NF EN 771-1</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Éprouvettes de compression de BTC stabilisées à 4% de ciment et formulation sable dunaire de Nouakchott.</p>
+            </div>
+          </article>
+
+          <article class="bg-surface-container-lowest rounded-2xl overflow-hidden card-shadow border border-border-subtle group">
+            <div class="overflow-hidden relative">
+              <img loading="lazy" decoding="async" alt="Moule d'essai Typha" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700"
+                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvN2DvpIkJghi9mldX8zwLRzYYwXkg7S5vsKCPSQ_eGpCRUuDBXzu-Azxs8tb_CBND7EBl0BPLTmSz5yF69GeUlv8FI9dkphvNCxAoYC0zgTmkzvPLH7YuD2tTYPOSjKdRb70AbTXD3dm6xo0msRnL_vX1OpKK2KPjPtzRZEqG9x9nNViLnxEvMoyiRjGMAzO9yK9gg-qUGAR0JW-QePevmPuPDSC0p-M1b8iObnYz45GSXr7MFuLhPHP3_S233mYr2ok">
+              <span class="absolute top-3 right-3 bg-black/60 px-2.5 py-1 rounded-full text-[11px] text-white font-medium">Mesures en direct</span>
+            </div>
+            <div class="p-5">
+              <div class="flex items-center justify-between">
+                <span class="font-label-sm text-label-sm text-primary-container font-bold">Banc d'Essai Thermique</span>
+                <span class="text-[11px] text-on-surface-variant font-label-sm">Sondes PT100 actives</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Caissons expérimentaux instrumentés avec sondes PT100 comparant parpaing brut versus panneau Typha fibré.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 7. HISTOIRE DU FONDATEUR ================= -->
+  <section id="histoire" class="w-full py-space-xl md:py-24 bg-surface-container-low">
+    <div class="w-full max-w-[1440px] mx-auto px-gutter-mobile md:px-margin-tablet xl:px-margin">
+
+      <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-2 mb-16">
+        <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Parcours &amp; Vision Fondatrice</span>
+        <h2 class="font-headline-xl text-headline-xl md:text-[2.75rem] tracking-tight font-bold">L'exigence du terrain, la rigueur de la science.</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">L'histoire d'Oumar Wélé, ingénieur bâtisseur qui a consacré plus d'une décennie à transformer une plante invasive en joyau thermique pour la Mauritanie.</p>
+      </div>
+
+      <!-- Portrait du fondateur -->
+      <div class="mb-12 bg-surface-container-lowest rounded-3xl p-6 sm:p-10 border border-border-subtle card-shadow flex flex-col lg:flex-row items-center gap-8">
+        <div class="w-48 h-48 sm:w-56 sm:h-56 shrink-0 rounded-2xl overflow-hidden border-2 border-border-subtle shadow-md bg-sand-canvas">
+          <img loading="lazy" decoding="async" alt="Oumar Wélé, Fondateur de HABIDEM" class="w-full h-full object-cover"
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxEBpjuv221kaDyW3hBEZchawCfzYm74Cn6fQLntaxn_imSGLFjFxyKWppDoi9WyRmTvqscPJpiM7NE95-kAlu10s-icYmvywVvURnZ-GOBNQLh0M0iEW7MAl0k87paWzV_fRAatT455PvnkagTobNrE5uPeLRKQsYOtb-rKD10JRyBY13ocbYYtWCF4o9P8cpJ8AdtJt5UBzRPyjqBTqJhWMctx7lqk3nWP3qAEDd_gZTQBRCTc1m6RPJXgYvib9M8MM">
+        </div>
+        <div class="flex-1 flex flex-col gap-3 text-left">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="bg-typha-green-light text-primary-container font-label-sm text-label-sm px-3 py-1 rounded-full font-bold flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">workspace_premium</span>Lauréat COP 30 Green Solutions Awards</span>
+            <span class="bg-terracotta-soft text-secondary font-label-sm text-label-sm px-3 py-1 rounded-full font-bold">Pionnier de l'Éco-Construction au Sahel</span>
+          </div>
+          <div class="mt-1">
+            <h3 class="font-headline-xl text-headline-xl md:text-[2.25rem] font-bold leading-tight">Oumar Wélé</h3>
+            <p class="font-headline-sm text-headline-sm text-secondary font-semibold mt-0.5">Ingénieur &amp; Fondateur de HABIDEM</p>
+          </div>
+          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed max-w-2xl mt-1">« Ingénieur visionnaire et chercheur de terrain, Oumar Wélé consacre plus de 10 ans à transformer la terre crue et le Typha en solutions d'isolation et d'architecture bioclimatique adaptées aux canicules extrêmes du Sahel mauritanien. »</p>
+          <div class="flex flex-wrap items-center gap-3 pt-3 border-t border-border-subtle mt-2">
+            <div class="flex items-center gap-1.5 bg-surface-container px-3 py-1.5 rounded-lg text-slate-text font-label-sm text-label-sm"><span class="material-symbols-outlined text-primary-container text-[18px]">history_edu</span>+10 ans de R&amp;D</div>
+            <div class="flex items-center gap-1.5 bg-surface-container px-3 py-1.5 rounded-lg text-slate-text font-label-sm text-label-sm"><span class="material-symbols-outlined text-secondary text-[18px]">verified</span>Brevet Éco-Matériaux</div>
+            <div class="flex items-center gap-1.5 bg-surface-container px-3 py-1.5 rounded-lg text-slate-text font-label-sm text-label-sm"><span class="material-symbols-outlined text-primary-container text-[18px]">location_on</span>Nouakchott, Mauritanie</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Parcours en 3 actes -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter items-stretch">
+
+        <article class="bg-surface-container-lowest rounded-2xl overflow-hidden card-shadow border border-border-subtle flex flex-col">
+          <div class="h-64 overflow-hidden relative">
+            <img loading="lazy" decoding="async" alt="Oumar Wélé sur chantier expérimental" class="w-full h-full object-cover"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHhEeoTrHTkZLKjSlBj41Fo5nZZfpSQllN9iWnULZe1vh2uhwihphlnM3jAuUjV-ssEhXKWGzAYAoj0cfqVSluE-uT42g4_5vKGbcmKEPjkjeXaz3Hw1CtLFwcxs-cyWvZNbuV5Qk2bR4t6d3c6I0Hb609jnM5F2JLHGdbzEFRcQig_WnBdm4T-bUYGFfxyRb48MJFAxbSG88rfWWniNVi4rzhvOryDoYujzlDv4QmeuGGSrHTKb6AyXwHwZuCHSAk7maW9V_-99HVrtA">
+            <span class="absolute top-4 left-4 bg-black/70 text-white font-label-sm text-label-sm px-3 py-1 rounded-full">Acte 1 • 2013-2018</span>
+          </div>
+          <div class="p-6 md:p-8 flex flex-col flex-1 justify-between">
+            <div>
+              <h3 class="font-headline-md text-headline-md font-bold">La Terre pour Origine</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant mt-3">Tout a commencé sur le terrain en 2013. Pour réinventer l'habitat sahélien, il fallait d'abord comprendre la matière à la source, éprouver l'argile crue et défier les canicules avec des solutions endogènes adaptées à nos maçons.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-border-subtle font-label-sm text-label-sm text-secondary font-semibold">Chantiers pilotes Vallée du Fleuve</div>
+          </div>
+        </article>
+
+        <article class="bg-surface-container-lowest rounded-2xl overflow-hidden card-shadow border border-border-subtle flex flex-col">
+          <div class="h-64 overflow-hidden relative">
+            <img loading="lazy" decoding="async" alt="Oumar Wélé en conférence scientifique" class="w-full h-full object-cover"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAxErQnDJrUt9_5keuNs6TR-CfJpSe5r1x8HsLS_mhSHYOb-uQ4EbqTZihwuodiIbbdfU9zSPlEYYvcTo2ci5f1cNe50Y-XItv1ckuIVUPGbDDzgDmlz_djM9Y2dmZKTnatxq4IvCKkJj2GQuIFAib9lWI4wifGsIRQBdn7fcHUcMa4NOywMG0smOqONawg914OT8BVV6F6v2tuyaoHEFa5v7-QHB0I9WAFwAvsxanYKu3j_Z2sgduizsObBgTMFqNZLM">
+            <span class="absolute top-4 left-4 bg-primary-container text-white font-label-sm text-label-sm px-3 py-1 rounded-full">Acte 2 • 2019-2023</span>
+          </div>
+          <div class="p-6 md:p-8 flex flex-col flex-1 justify-between">
+            <div>
+              <h3 class="font-headline-md text-headline-md font-bold">La Science pour Règle</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant mt-3">De l'intuition à l'ingénierie. Plus de 10 ans de recherche ont transformé un savoir-faire traditionnel en un complexe bioclimatique Terre-Typha breveté, mesuré et certifié par l'École Polytechnique et la TU Berlin.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-border-subtle font-label-sm text-label-sm text-primary-container font-semibold">Modélisations thermodynamiques</div>
+          </div>
+        </article>
+
+        <article class="bg-surface-container-lowest rounded-2xl overflow-hidden card-shadow border border-border-subtle flex flex-col">
+          <div class="h-64 overflow-hidden relative">
+            <img loading="lazy" decoding="async" alt="Attestation de reconnaissance Ministère Environnement Mauritanie" class="w-full h-full object-contain p-2 bg-sand-canvas"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw1s35OCCe--8bskcbOHCueY2ognXz9Du9ShN7dUIBUMGXct5F0S5nqrOHG1Q9jjrfn9oxin4GsFwJU-hotkj0fiJu8Vq9orsQDzbbAgmeiBTqgRWcYS8hxtCayjWsBgOl7gqZiBtZ-KfiQZxVwNPf70X3wFSSJQiWFNsXq8bnW4lSoW1tAf-MkFOpSxOjH6tnaA_6pMhdu55QYi6Y5Zk8zPKew4dVcvKwxC304Bf3aTnRrxU2hwGnl0NsNsljbyQonEQ">
+            <span class="absolute top-4 left-4 bg-secondary text-white font-label-sm text-label-sm px-3 py-1 rounded-full">Acte 3 • 2024-2026</span>
+          </div>
+          <div class="p-6 md:p-8 flex flex-col flex-1 justify-between">
+            <div>
+              <h3 class="font-headline-md text-headline-md font-bold">La Reconnaissance pour Preuve</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant mt-3">Une vision validée au sommet mondial. Aujourd'hui, HABIDEM prouve que le confort d'été, la durabilité et l'économie d'énergie ne sont plus une théorie, mais une réalité institutionnelle consacrée par l'État mauritanien.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-border-subtle font-label-sm text-label-sm text-secondary font-semibold">Attestation officielle Ministère Environnement</div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 8. MATÉRIAUX ================= -->
+  <section id="materiaux" class="w-full py-space-xl md:py-24 bg-background">
+    <div class="w-full max-w-[1440px] mx-auto px-gutter-mobile md:px-margin-tablet xl:px-margin">
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Circuits Courts &amp; Éco-Industrie</span>
+          <h2 class="font-headline-xl text-headline-xl md:text-[2.75rem] tracking-tight font-bold">Des matériaux nobles, produits en Mauritanie.</h2>
+        </div>
+        <p class="font-body-md text-body-md text-on-surface-variant max-w-md">Disponibles pour vos chantiers privés, concours d'architectes et commandes de bailleurs internationaux.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+
+        <article class="bg-surface-container-lowest rounded-2xl overflow-hidden card-shadow border border-border-subtle flex flex-col group">
+          <div class="aspect-square w-full overflow-hidden">
+            <img loading="lazy" decoding="async" alt="Briques de Terre Compressée BTC" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQSLUOmRJn9EcOXS1filvXCPv0DhQ4MZdD7_nH8fBhs26xgu3ut3Xn1ADFc9-dCN0IKhncxBKZgzNh2MBvaDgXk0dpEHuf0uQhd2UVLdUQ1KIsB07w6a_dNLMg_iZ5wUUJCOegblpT42GRVlVDGuO_wSUctjGyBuA0pEipPqRGq4eo5NTEyVfjOWaCij5l4Lwg-Pb2lwlYJPrCLsfUAL7j9OX1gZZrpISA2bbrM5MrdbN6zb-b9JGzzA1-1l9NNsguwlw">
+          </div>
+          <div class="p-6 md:p-8 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Gros Œuvre</span>
+              <h3 class="font-headline-md text-headline-md font-bold mt-1">Briques de Terre (BTC)</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant mt-3">Masse volumique optimale pour le stockage thermique. Murs porteurs et cloisons à emboîtement direct sans mortier épais, garantissant une rapidité d'exécution exceptionnelle.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-border-subtle flex items-center justify-between">
+              <span class="font-label-md text-label-md text-slate-text">Format 29.5 × 14 × 9 cm</span>
+              <a href="#contact" class="font-label-md text-label-md text-primary-container font-semibold hover:underline">Fiche produit</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-surface-container-lowest rounded-2xl overflow-hidden card-shadow border border-border-subtle flex flex-col group">
+          <div class="aspect-square w-full overflow-hidden">
+            <img loading="lazy" decoding="async" alt="Panneaux Isolants Typha" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdL1LwkHfoWh2JfynKUl2rGAoRFkg7Rzsux0ce32fJcr4SayiaYrvaT2IFiDIDUsSVJk1Z1UqOUu60ciz7UAUGX6OZEA7RZ_-9wSyn3hJU3bK8QzYbJzOh43PPtRiMQ8rXZRD6SI3hcaaU1sgnIapeN7NREu1pZPg8rTYjrIQa_pBuTNMzCt412bQVZ5WrzNNEERQxnM3M-Yik4D2bBfZF0QIq3TPOkrIiaHQIJ1JKzHttF0qQvX6Ledm8p4CZRzvQI0c">
+          </div>
+          <div class="p-6 md:p-8 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="font-label-sm text-label-sm text-primary-container font-bold uppercase">Isolation Bio</span>
+              <h3 class="font-headline-md text-headline-md font-bold mt-1">Panneaux Isolants Typha</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant mt-3">Matériau alvéolaire ultra-léger, 4 à 8 fois plus isolant que le béton. Résistant au feu, répulsif naturel contre les rongeurs et entièrement imputrescible en toiture comme en doublage.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-border-subtle flex items-center justify-between">
+              <span class="font-label-md text-label-md text-slate-text">Épaisseur 40 à 100 mm</span>
+              <a href="#contact" class="font-label-md text-label-md text-primary-container font-semibold hover:underline">Fiche produit</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-surface-container-lowest rounded-2xl overflow-hidden card-shadow border border-border-subtle flex flex-col group">
+          <div class="aspect-square w-full overflow-hidden">
+            <img loading="lazy" decoding="async" alt="Enduits Terre-Chaux" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCITw87qMhH6gqwfPCCHD1rF-nIqlDO0nJ_SEPtCQLGsDgJ3rY9nbzxN5Cs1vsDIGte-3GdnTlyjfVk7pgSBFbaKJZ527Pj0GNT1PJTGqQpfCYE5N_Q1VU0mx_WTLaVFL74YjcjNSMjtUw_0Y20H-PItrsnEiWDfLwGlTVdEwltw5nR92UkbP-BOGOtaitlouVACtYUz8X3GD_y8L30J4CRmb6DQvew52hFRc8MCmbbCVuBWqgOJ7WuYOZG6RAj8Hi3VIE">
+          </div>
+          <div class="p-6 md:p-8 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="font-label-sm text-label-sm text-slate-text font-bold uppercase">Finitions Vivantes</span>
+              <h3 class="font-headline-md text-headline-md font-bold mt-1">Enduits Terre-Chaux</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant mt-3">Protection hydrofuge perspirante. Finitions intérieures et extérieures soignées dans les tons ocre saharien naturel, sans pigments chimiques ni solvants émissifs.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-border-subtle flex items-center justify-between">
+              <span class="font-label-md text-label-md text-slate-text">Sacs 25 kg pré-dosés</span>
+              <a href="#contact" class="font-label-md text-label-md text-primary-container font-semibold hover:underline">Fiche produit</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 9. FAQ ================= -->
+  <section id="faq" class="w-full py-space-xl md:py-24 bg-surface-container-low">
+    <div class="w-full max-w-4xl mx-auto px-gutter-mobile md:px-margin-tablet">
+
+      <div class="text-center flex flex-col items-center mb-12">
+        <span class="font-label-sm text-label-sm uppercase tracking-wider text-primary-container font-bold">Transparence &amp; Certitudes</span>
+        <h2 class="font-headline-xl text-headline-xl md:text-[2.75rem] tracking-tight font-bold mt-1">Foire Aux Questions</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mt-2">Tout ce que vous devez savoir avant de construire ou rénover avec HABIDEM.</p>
+      </div>
+
+      <!-- Comportement géré dans js/main.js (initFaq) -->
+      <div class="flex flex-col gap-4">
+
+        <div class="faq-item bg-surface-container-lowest rounded-2xl border border-border-subtle shadow-sm overflow-hidden">
+          <button type="button" class="w-full text-left p-6 md:p-7 flex items-center justify-between gap-4 font-headline-sm text-headline-sm font-semibold focus:outline-none">
+            <span>Une maison en terre crue résiste-t-elle aux pluies et à l'humidité ?</span>
+            <span class="material-symbols-outlined text-primary-container text-[24px] transition-transform duration-300 rotate-180">expand_more</span>
+          </button>
+          <div class="faq-answer px-6 md:px-7 pb-6 text-on-surface-variant font-body-md text-body-md">
+            Parfaitement. Nos briques et nos murs sont protégés par un soubassement en pierre locale et un enduit stabilisé à la chaux spécialement formulé pour repousser l'eau de pluie tout en laissant le mur respirer. Ces techniques ont fait leurs preuves pendant des décennies sous les intempéries sahéliennes les plus intenses.
+          </div>
+        </div>
+
+        <div class="faq-item bg-surface-container-lowest rounded-2xl border border-border-subtle shadow-sm overflow-hidden">
+          <button type="button" class="w-full text-left p-6 md:p-7 flex items-center justify-between gap-4 font-headline-sm text-headline-sm font-semibold focus:outline-none">
+            <span>Le coût de construction est-il plus élevé que celui d'une maison standard en béton ?</span>
+            <span class="material-symbols-outlined text-primary-container text-[24px] transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-answer hidden px-6 md:px-7 pb-6 text-on-surface-variant font-body-md text-body-md">
+            Non. À la construction, nos solutions sont équivalentes grâce à l'usage de ressources locales et à l'élimination des transports maritimes coûteux de matériaux importés. À l'exploitation, vous économisez immédiatement 50% à 80% sur vos factures énergétiques grâce à l'absence de climatisation diurne. Votre investissement est rentabilisé dès les premières années.
+          </div>
+        </div>
+
+        <div class="faq-item bg-surface-container-lowest rounded-2xl border border-border-subtle shadow-sm overflow-hidden">
+          <button type="button" class="w-full text-left p-6 md:p-7 flex items-center justify-between gap-4 font-headline-sm text-headline-sm font-semibold focus:outline-none">
+            <span>Pouvez-vous construire partout en Mauritanie ?</span>
+            <span class="material-symbols-outlined text-primary-container text-[24px] transition-transform duration-300">expand_more</span>
+          </button>
+          <div class="faq-answer hidden px-6 md:px-7 pb-6 text-on-surface-variant font-body-md text-body-md">
+            Oui. Nous intervenons à Nouakchott comme dans les régions intérieures (Kaédi, Rosso, fleuve Sénégal), et nous fournissons nos matériaux préfabriqués (briques BTC, bottes compressées de Typha) aux architectes et maîtres d'ouvrage dans toute la sous-région ouest-africaine.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 10. CONTACT ================= -->
+  <section id="contact" class="w-full py-space-xl md:py-24 bg-background">
+    <div class="w-full max-w-[1440px] mx-auto px-gutter-mobile md:px-margin-tablet xl:px-margin">
+      <div class="bg-surface-container-lowest rounded-3xl p-6 sm:p-10 md:p-16 border border-border-subtle shadow-[0_12px_32px_-4px_rgba(26,86,50,0.08)]">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+          <!-- Coordonnées -->
+          <div class="lg:col-span-5 flex flex-col justify-between">
+            <div class="flex flex-col gap-6">
+              <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Étude Thermique &amp; Devis Personnalisé</span>
+              <h2 class="font-headline-xl text-headline-xl md:text-[2.5rem] tracking-tight font-bold">Prêt à bâtir votre projet sans compromis sur le confort ?</h2>
+              <p class="font-body-md text-body-md text-on-surface-variant">Partagez-nous vos plans, vos envies d'espace ou vos besoins en matériaux biosourcés. Notre équipe d'ingénieurs et techniciens vous répond avec des métrés précis.</p>
+
+              <div class="flex flex-col gap-4 mt-2">
+                <div class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-primary-container text-[22px] mt-0.5">location_on</span>
+                  <div class="flex flex-col">
+                    <span class="font-label-md text-label-md font-semibold">Siège Social</span>
+                    <span class="font-body-sm text-body-sm text-on-surface-variant">ILOT K Ext S3, Tevragh-Zeina, Nouakchott, Mauritanie</span>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-primary-container text-[22px] mt-0.5">mail</span>
+                  <div class="flex flex-col">
+                    <span class="font-label-md text-label-md font-semibold">Email Professionnel</span>
+                    <a href="mailto:habidemauritanie@gmail.com" class="font-body-sm text-body-sm text-primary-container hover:underline">habidemauritanie@gmail.com</a>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-primary-container text-[22px] mt-0.5">schedule</span>
+                  <div class="flex flex-col">
+                    <span class="font-label-md text-label-md font-semibold">Réactivité Garantie</span>
+                    <span class="font-body-sm text-body-sm text-on-surface-variant">Réponse et pré-dimensionnement sous 24h ouvrées</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-border-subtle">
+              <a href="https://wa.me/22236300000" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-xl bg-primary-container text-white font-label-md text-label-md hover:bg-typha-green-deep transition-all shadow-md">
+                <span class="material-symbols-outlined text-[22px]">chat</span>
+                Discuter sur WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- Formulaire (soumission gérée dans js/main.js) -->
+          <div class="lg:col-span-7 bg-surface-container-low p-6 sm:p-8 md:p-10 rounded-2xl border border-border-subtle">
+            <form id="contact-form" class="flex flex-col gap-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="flex flex-col gap-1.5">
+                  <label for="name" class="font-label-sm text-label-sm text-slate-text">Votre Nom / Entreprise *</label>
+                  <input id="name" type="text" required placeholder="Ex: Oumar Sy / Cabinet ARCHI"
+                         class="w-full px-4 py-3 bg-surface-container-lowest border border-border-subtle rounded-lg font-body-sm text-body-sm focus:outline-none focus:border-primary-container transition-colors">
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <label for="tel" class="font-label-sm text-label-sm text-slate-text">Numéro de Téléphone *</label>
+                  <input id="tel" type="tel" required placeholder="+222 45 00 00 00"
+                         class="w-full px-4 py-3 bg-surface-container-lowest border border-border-subtle rounded-lg font-body-sm text-body-sm focus:outline-none focus:border-primary-container transition-colors">
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-1.5">
+                <label for="project-type" class="font-label-sm text-label-sm text-slate-text">Type de projet *</label>
+                <select id="project-type" required
+                        class="w-full px-4 py-3 bg-surface-container-lowest border border-border-subtle rounded-lg font-body-sm text-body-sm text-slate-text focus:outline-none focus:border-primary-container transition-colors">
+                  <option value="complete">Construction complète (Clé en main)</option>
+                  <option value="materials">Achat de Matériaux (BTC / Panneaux Typha)</option>
+                  <option value="consulting">Conseil &amp; Étude Bioclimatique</option>
+                  <option value="public">Marché Public / Bailleurs Internationaux</option>
+                </select>
+              </div>
+
+              <div class="flex flex-col gap-1.5">
+                <label for="message" class="font-label-sm text-label-sm text-slate-text">Parlez-nous de votre projet... *</label>
+                <textarea id="message" rows="4" required placeholder="Localisation du terrain, surface estimée, délai souhaité..."
+                          class="w-full px-4 py-3 bg-surface-container-lowest border border-border-subtle rounded-lg font-body-sm text-body-sm focus:outline-none focus:border-primary-container transition-colors"></textarea>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <input id="consent" type="checkbox" required class="w-4 h-4 rounded text-primary-container border-border-subtle focus:ring-0">
+                <label for="consent" class="font-label-sm text-label-sm text-on-surface-variant">J'accepte d'être recontacté pour l'étude de ma demande.</label>
+              </div>
+
+              <button type="submit" class="w-full py-4 px-8 rounded-xl bg-secondary text-on-secondary hover:bg-on-secondary-container font-label-md text-label-md transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer mt-2">
+                <span>Envoyer ma demande en 1 clic</span>
+                <span class="material-symbols-outlined text-[18px]">send</span>
+              </button>
+            </form>
+
+            <div id="confirmation-banner" role="status" class="hidden mt-4 p-4 rounded-xl bg-typha-green-light border border-primary-container/30 text-primary-container flex items-center gap-3">
+              <span class="material-symbols-outlined text-[24px]">task_alt</span>
+              <div class="flex flex-col">
+                <span class="font-label-md text-label-md font-bold">Demande transmise avec succès !</span>
+                <span class="font-body-sm text-body-sm">Un ingénieur HABIDEM analyse vos éléments et vous contactera sous 24h.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= PIED DE PAGE ================= -->
+<footer class="w-full bg-surface-container-low py-space-xl">
+  <div class="w-full px-gutter-mobile md:px-margin-tablet xl:px-margin max-w-[1440px] mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter mb-space-xl">
+
+      <div class="lg:col-span-5 flex flex-col gap-space-sm">
+        <img loading="lazy" decoding="async" alt="HABIDEM - Habitat Développement en Mauritanie" class="h-10 md:h-12 w-auto object-contain mix-blend-multiply self-start"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHtskYdQY7T6BRoZzipaE2Gs5hS1sfYYq0EtOmTjAANYmWiIjCfblkCR_DUrZwtZOz4IWyrfbEuU9ZCtkWbOMzylOLIv7A0NgtXmKESquCemVtfPzkdYKD8KuElCzc1qvZAhotZjg28g6eMdNMH2zfTeriReKDPQPA7W6DZMiobLYt92lXzwVuEHjBdUqjFVVzNF6bf6o2X-6Z8TYXRMExbBSwZEXqai5RpjgUhxGSSH8hiQesNNC0lJNur9ZsAwWxuPk">
+        <p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">Bâtisseur de référence de la Politique Nationale Urbaine de Mauritanie. Pionnier des solutions constructives en terre crue stabilisée et isolant naturel en Typha australis.</p>
+        <div class="inline-flex items-center gap-space-xs mt-space-xs">
+          <span class="w-2 h-2 rounded-full bg-primary-container"></span>
+          <span class="font-label-sm text-label-sm text-on-surface-variant">Nouakchott • Rosso • Kaédi</span>
+        </div>
+      </div>
+
+      <nav class="lg:col-span-3 flex flex-col gap-space-sm" aria-label="Navigation du pied de page">
+        <span class="font-label-md text-label-md font-semibold">Navigation d'Expertise</span>
+        <ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant">
+          <li><a href="#technologie" class="hover:text-on-surface transition-colors">Technologie Bioclimatique</a></li>
+          <li><a href="#materiaux" class="hover:text-on-surface transition-colors">Terre Crue &amp; Typha</a></li>
+          <li><a href="#realisations" class="hover:text-on-surface transition-colors">Ouvrages &amp; Réalisations</a></li>
+          <li><a href="#histoire" class="hover:text-on-surface transition-colors">Notre Engagement</a></li>
+          <li><a href="#galerie" class="hover:text-on-surface transition-colors">Galerie Chantiers</a></li>
+          <li><a href="#faq" class="hover:text-on-surface transition-colors">Foire Aux Questions</a></li>
+        </ul>
+      </nav>
+
+      <div class="lg:col-span-4 flex flex-col gap-space-sm">
+        <span class="font-label-md text-label-md font-semibold">Coordonnées Officielles</span>
+        <div class="flex flex-col gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+          <p class="flex items-start gap-space-xs"><span class="material-symbols-outlined text-[20px] text-primary-container">location_on</span>ILOT K Ext S3, Tevragh-Zeina, Nouakchott, Mauritanie</p>
+          <p class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px] text-primary-container">mail</span><a href="mailto:habidemauritanie@gmail.com" class="hover:text-on-surface transition-colors">habidemauritanie@gmail.com</a></p>
+          <p class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[20px] text-primary-container">verified</span>Bureau d'études et d'ingénierie agréé</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md font-label-sm text-label-sm text-on-surface-variant">
+      <p>© 2026 HABIDEM. Tous droits réservés. Bâtisseur de la Politique Nationale Urbaine de Mauritanie.</p>
+      <div class="flex items-center gap-space-md">
+        <a href="#" class="hover:text-on-surface transition-colors">Mentions légales</a>
+        <a href="#" class="hover:text-on-surface transition-colors">Confidentialité</a>
+        <a href="#" class="hover:text-on-surface transition-colors">Charte Écologique</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
